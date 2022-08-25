@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Properties;
 
 import org.apache.commons.io.FileUtils;
@@ -21,6 +22,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -49,32 +51,28 @@ public class ServiceRW {
 		storage = new Properties();
 		FileInputStream fi = new FileInputStream(".\\src\\main\\resources\\config.properties");
 		storage.load(fi);
+		// --Opening Chrome Browser
 		DesiredCapabilities capabilities = new DesiredCapabilities();
 		WebDriverManager.chromedriver().setup();
 		ChromeOptions options = new ChromeOptions();
-		// options.addArguments("headless");
-		// options.addArguments("headless");
+		options.addArguments("--headless", "--window-size=1920,1200");
 		options.addArguments("--incognito");
 		options.addArguments("--test-type");
 		options.addArguments("--no-proxy-server");
 		options.addArguments("--proxy-bypass-list=*");
 		options.addArguments("--disable-extensions");
 		options.addArguments("--no-sandbox");
-		options.addArguments("--start-maximized");
-		options.addArguments("--disable-site-isolation-trials");
-
-		// options.addArguments("--headless");
-		// options.addArguments("window-size=1366x788");
-		capabilities.setPlatform(Platform.ANY);
+		String downloadFilepath = System.getProperty("user.dir") + "\\src\\main\\resources\\Downloads";
+		HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
+		chromePrefs.put("profile.default_content_settings.popups", 0);
+		chromePrefs.put("download.prompt_for_download", "false");
+		chromePrefs.put("safebrowsing.enabled", "false");
+		chromePrefs.put("download.default_directory", downloadFilepath);
+		options.setExperimentalOption("prefs", chromePrefs);
+		capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
 		capabilities.setCapability(ChromeOptions.CAPABILITY, options);
+		capabilities.setPlatform(Platform.ANY);
 		driver = new ChromeDriver(options);
-		// Default size
-		Dimension currentDimension = driver.manage().window().getSize();
-		int height = currentDimension.getHeight();
-		int width = currentDimension.getWidth();
-		System.out.println("Current height: " + height);
-		System.out.println("Current width: " + width);
-		System.out.println("window size==" + driver.manage().window().getSize());
 
 		// Set new size
 		/*
@@ -113,8 +111,9 @@ public class ServiceRW {
 				String subject = "Selenium Automation Script: " + Env + " : Route Work Smoke";
 				String File = ".\\src\\main\\resources\\Screenshots\\LoginIssue.png";
 				try {
-					Email.sendMail("ravina.prajapati@samyak.com,asharma@samyak.com,parth.doshi@samyak.com", subject,
-							msg.toString(), File);
+					Email.sendMail(
+							"ravina.prajapati@samyak.com,asharma@samyak.com,parth.doshi@samyak.com, saurabh.jain@samyak.com, himanshu.dholakia@samyak.com",
+							subject, msg.toString(), File);
 
 				} catch (Exception ex) {
 					Logger.getLogger(ServiceRW.class.getName()).log(Level.SEVERE, null, ex);
@@ -141,8 +140,9 @@ public class ServiceRW {
 				String subject = "Selenium Automation Script: " + Env + " : Route Work Smoke";
 				String File = ".\\src\\main\\resources\\Screenshots\\LoginIssue.png";
 				try {
-					Email.sendMail("ravina.prajapati@samyak.com,asharma@samyak.com,parth.doshi@samyak.com", subject,
-							msg.toString(), File);
+					Email.sendMail(
+							"ravina.prajapati@samyak.com,asharma@samyak.com,parth.doshi@samyak.com, saurabh.jain@samyak.com, himanshu.dholakia@samyak.com",
+							subject, msg.toString(), File);
 
 				} catch (Exception ex) {
 					Logger.getLogger(ServiceRW.class.getName()).log(Level.SEVERE, null, ex);
@@ -167,8 +167,9 @@ public class ServiceRW {
 				String subject = "Selenium Automation Script: " + Env + " : Route Work Smoke";
 				String File = ".\\src\\main\\resources\\Screenshots\\LoginIssue.png";
 				try {
-					Email.sendMail("ravina.prajapati@samyak.com,asharma@samyak.com,parth.doshi@samyak.com", subject,
-							msg.toString(), File);
+					Email.sendMail(
+							"ravina.prajapati@samyak.com,asharma@samyak.com,parth.doshi@samyak.com, saurabh.jain@samyak.com, himanshu.dholakia@samyak.com",
+							subject, msg.toString(), File);
 
 				} catch (Exception ex) {
 					Logger.getLogger(ServiceRW.class.getName()).log(Level.SEVERE, null, ex);
@@ -195,8 +196,9 @@ public class ServiceRW {
 				String subject = "Selenium Automation Script: " + Env + " : Route Work Smoke";
 				String File = ".\\src\\main\\resources\\Screenshots\\LoginIssue.png";
 				try {
-					Email.sendMail("ravina.prajapati@samyak.com,asharma@samyak.com,parth.doshi@samyak.com", subject,
-							msg.toString(), File);
+					Email.sendMail(
+							"ravina.prajapati@samyak.com,asharma@samyak.com,parth.doshi@samyak.com, saurabh.jain@samyak.com, himanshu.dholakia@samyak.com",
+							subject, msg.toString(), File);
 
 				} catch (Exception ex) {
 					Logger.getLogger(ServiceRW.class.getName()).log(Level.SEVERE, null, ex);
@@ -220,7 +222,8 @@ public class ServiceRW {
 		File source = ts.getScreenshotAs(OutputType.FILE);
 		// after execution, you could see a folder "FailedTestsScreenshots" under src
 		// folder
-		String destination = System.getProperty("user.dir") + "\\src\\main\\resources\\Screenshots\\" + screenshotName + ".png";
+		String destination = System.getProperty("user.dir") + "\\src\\main\\resources\\Screenshots\\" + screenshotName
+				+ ".png";
 		File finalDestination = new File(destination);
 		FileUtils.copyFile(source, finalDestination);
 		return destination;
@@ -872,8 +875,8 @@ public class ServiceRW {
 
 		msg.append("Schedule in Order Queue : " + "\n");
 		msg.append(ActGen1 + "\n");
-		//msg.append(ActGen2 + "\n");
-		//msg.append(ActGen3 + "\n\n");
+		// msg.append(ActGen2 + "\n");
+		// msg.append(ActGen3 + "\n\n");
 
 		msg.append("Recurrence Verification : " + RecMsg + "\n\n");
 
@@ -885,8 +888,9 @@ public class ServiceRW {
 		String subject = "Selenium Automation Script: " + Env + " : Route Work Smoke";
 
 		try {
-			Email.sendMail("ravina.prajapati@samyak.com,asharma@samyak.com,parth.doshi@samyak.com", subject,
-					msg.toString(), "");
+			Email.sendMail(
+					"ravina.prajapati@samyak.com,asharma@samyak.com,parth.doshi@samyak.com, saurabh.jain@samyak.com, himanshu.dholakia@samyak.com",
+					subject, msg.toString(), "");
 
 		} catch (Exception ex) {
 			Logger.getLogger(ServiceRW.class.getName()).log(Level.SEVERE, null, ex);
