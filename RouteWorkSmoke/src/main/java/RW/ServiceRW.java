@@ -55,7 +55,8 @@ public class ServiceRW {
 		DesiredCapabilities capabilities = new DesiredCapabilities();
 		WebDriverManager.chromedriver().setup();
 		ChromeOptions options = new ChromeOptions();
-		options.addArguments("--headless", "--window-size=1920,1200");
+		options.addArguments("--headless", "--window-size=1382, 744");
+		// options.addArguments("--headless", "--window-size=1920,1200");
 		options.addArguments("--incognito");
 		options.addArguments("--test-type");
 		options.addArguments("--no-proxy-server");
@@ -75,6 +76,8 @@ public class ServiceRW {
 		driver = new ChromeDriver(options);
 
 		// Set new size
+
+		// driver.manage().window().maximize();
 		/*
 		 * Dimension newDimension = new Dimension(1366, 788);
 		 * driver.manage().window().setSize(newDimension);
@@ -416,6 +419,8 @@ public class ServiceRW {
 		driver.findElement(By.id("txtUDAddr1")).sendKeys("9011 CAPITAL KING, 7TH STRT");
 		driver.findElement(By.id("txtUDAddr2")).sendKeys("No#771");
 		driver.findElement(By.id("txtUDzip")).sendKeys("90003");
+		driver.findElement(By.id("txtUDzip")).sendKeys(Keys.TAB);
+		Thread.sleep(2000);
 		driver.findElement(By.id("txtUDPhone")).sendKeys("4115116110");
 		driver.findElement(By.id("txtUDDeliveryInst")).sendKeys("Please call before 4h of delivery process");
 
@@ -427,6 +432,8 @@ public class ServiceRW {
 		driver.findElement(By.id("txtFromAddr1")).sendKeys("2000 AVENUE OF THE STARS");
 		driver.findElement(By.id("txtFromAddr2")).sendKeys("");
 		driver.findElement(By.id("txtFromZip")).sendKeys("90067");
+		driver.findElement(By.id("txtFromZip")).sendKeys(Keys.TAB);
+		Thread.sleep(2000);
 		driver.findElement(By.id("txtFromPhone")).sendKeys("(424) 288-2125");
 		driver.findElement(By.id("txtPUInst")).sendKeys("Art Work");
 		driver.findElement(By.id("txtShipperEmail")).sendKeys("pdoshi1@samyak.com");
@@ -441,6 +448,8 @@ public class ServiceRW {
 		driver.findElement(By.id("txtToAddr1")).sendKeys("10880 WHILSHIRE BLVD");
 		driver.findElement(By.id("txtToAddr2")).sendKeys("#1600");
 		driver.findElement(By.id("txtToZip")).sendKeys("90024");
+		driver.findElement(By.id("txtToZip")).sendKeys(Keys.TAB);
+		Thread.sleep(2000);
 		driver.findElement(By.id("txtToPhone")).sendKeys("(424) 288-2125");
 		driver.findElement(By.id("txtDelInst")).sendKeys("Art Work");
 		driver.findElement(By.id("txtRecipientEmail")).sendKeys("pdoshi2@samyak.com");
@@ -469,7 +478,16 @@ public class ServiceRW {
 		driver.findElement(By.id("txtRouteWorkRef3")).sendKeys("Ref3 Ship1");
 
 		driver.findElement(By.id("btnaddshipment")).click();
+		Thread.sleep(2000);
+		WebElement EditShip = driver.findElement(By.id("btnDownEditStops"));
+		js.executeScript("arguments[0].scrollIntoView();", EditShip);
+		Thread.sleep(2000);
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("gvShipmentDetails")));
+
+		WebElement ShipmentDetails = driver.findElement(By.id("module.shipment._header"));
+		js.executeScript("arguments[0].scrollIntoView();", ShipmentDetails);
+		Thread.sleep(5000);
+
 		// Shipment Details - 2
 		// From
 		driver.findElement(By.id("txtFromStopSeq")).clear();
@@ -482,6 +500,8 @@ public class ServiceRW {
 		driver.findElement(By.id("txtToAddr1")).sendKeys("16128 SHERMAN WAY");
 		driver.findElement(By.id("txtToAddr2")).clear();
 		driver.findElement(By.id("txtToZip")).sendKeys("91406");
+		driver.findElement(By.id("txtToZip")).sendKeys(Keys.TAB);
+		Thread.sleep(2000);
 		driver.findElement(By.id("txtToPhone")).sendKeys("(424) 288-2125");
 		driver.findElement(By.id("txtDelInst")).sendKeys("Art Work");
 		driver.findElement(By.id("txtRecipientEmail")).sendKeys("pdoshi@samyak.com");
@@ -506,7 +526,14 @@ public class ServiceRW {
 		driver.findElement(By.id("txtRouteWorkRef3")).sendKeys("Ref3 Ship2");
 
 		driver.findElement(By.id("btnaddshipment")).click();
+		EditShip = driver.findElement(By.id("btnDownEditStops"));
+		js.executeScript("arguments[0].scrollIntoView();", EditShip);
+		Thread.sleep(2000);
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("gvShipmentDetails")));
+
+		ShipmentDetails = driver.findElement(By.id("module.shipment._header"));
+		js.executeScript("arguments[0].scrollIntoView();", ShipmentDetails);
+		Thread.sleep(5000);
 
 		// Shipment Details - 3
 		// From
@@ -520,6 +547,8 @@ public class ServiceRW {
 		driver.findElement(By.id("txtToAddr1")).sendKeys("2500 BROADWAY");
 		driver.findElement(By.id("txtToAddr2")).sendKeys("#400");
 		driver.findElement(By.id("txtToZip")).sendKeys("91404");
+		driver.findElement(By.id("txtToZip")).sendKeys(Keys.TAB);
+		Thread.sleep(2000);
 		driver.findElement(By.id("txtToPhone")).sendKeys("(424) 288-2125");
 		driver.findElement(By.id("txtDelInst")).sendKeys("Art Work");
 		driver.findElement(By.id("txtRecipientEmail")).sendKeys("pdoshi@samyak.com");
@@ -546,8 +575,14 @@ public class ServiceRW {
 		driver.findElement(By.id("txtRouteWorkRef3")).sendKeys("Ref3 Ship3");
 
 		driver.findElement(By.id("btnaddshipment")).click();
+		EditShip = driver.findElement(By.id("btnDownEditStops"));
+		js.executeScript("arguments[0].scrollIntoView();", EditShip);
+		Thread.sleep(2000);
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("gvShipmentDetails")));
 
+		ShipmentDetails = driver.findElement(By.id("module.shipment._header"));
+		js.executeScript("arguments[0].scrollIntoView();", ShipmentDetails);
+		Thread.sleep(5000);
 		// Shipment Details - 4
 		// From
 		driver.findElement(By.id("txtFromStopSeq")).clear();
@@ -560,6 +595,8 @@ public class ServiceRW {
 		driver.findElement(By.id("txtToAddr1")).sendKeys("2900 OLYMPIC BLVD");
 		driver.findElement(By.id("txtToAddr2")).clear();
 		driver.findElement(By.id("txtToZip")).sendKeys("91404");
+		driver.findElement(By.id("txtToZip")).sendKeys(Keys.TAB);
+		Thread.sleep(2000);
 		driver.findElement(By.id("txtToPhone")).sendKeys("(424) 288-2125");
 		driver.findElement(By.id("txtDelInst")).sendKeys("Art Work");
 		driver.findElement(By.id("txtRecipientEmail")).sendKeys("pdoshi@samyak.com");
@@ -589,7 +626,14 @@ public class ServiceRW {
 		driver.findElement(By.id("txtRouteWorkRef3")).sendKeys("Ref3 Ship4");
 
 		driver.findElement(By.id("btnaddshipment")).click();
+		EditShip = driver.findElement(By.id("btnDownEditStops"));
+		js.executeScript("arguments[0].scrollIntoView();", EditShip);
+		Thread.sleep(2000);
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("gvShipmentDetails")));
+
+		ShipmentDetails = driver.findElement(By.id("module.shipment._header"));
+		js.executeScript("arguments[0].scrollIntoView();", ShipmentDetails);
+		Thread.sleep(5000);
 
 		// Click on Done for validation
 		WebElement BtnDone = driver.findElement(By.id("btndone"));
@@ -631,8 +675,10 @@ public class ServiceRW {
 		Thread.sleep(2000);
 		driver.findElement(By.id("txtRouteWorkId")).sendKeys(RWid1);
 		Thread.sleep(2000);
-		driver.findElement(By.id("btnSearch")).click();
-		Thread.sleep(2000);
+		WebElement Search = driver.findElement(By.id("btnSearch"));
+		wait.until(ExpectedConditions.elementToBeClickable(Search));
+		act.moveToElement(Search).click().build().perform();
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("load")));
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("currentForm")));
 		getScreenshot(driver, "CreatedRW");
 
@@ -649,18 +695,46 @@ public class ServiceRW {
 		// Change Sequence of shipment-4
 		// driver.findElement(By.xpath(".//*[@id='gvShipmentDetails']/tbody/tr[0]/td[5]/a")).click();
 
-		WebElement element4 = driver.findElement(By.xpath(".//*[@id='gvShipmentDetails_ctl06_lbEdit']"));
-		Actions actions = new Actions(driver);
-		actions.moveToElement(element4).click().build().perform();
-		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("content1")));
+		WebElement el = driver.findElement(By.id("btnaddshipment"));
+		js.executeScript("arguments[0].scrollIntoView();", el);
+		Thread.sleep(5000);
+
+		try {
+			wait.until(
+					ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@src=\"images/ajax-loader.gif\"]")));
+			Thread.sleep(2000);
+			WebElement element4 = driver.findElement(By.xpath(".//*[@id='gvShipmentDetails_ctl06_lbEdit']"));
+			act.moveToElement(element4).build().perform();
+			wait.until(ExpectedConditions.elementToBeClickable(element4));
+			act.moveToElement(element4).click().perform();
+			wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("content1")));
+		} catch (Exception ctl006) {
+			wait.until(
+					ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@src=\"images/ajax-loader.gif\"]")));
+			WebElement element4 = driver.findElement(By.xpath(".//*[@id='gvShipmentDetails_ctl06_lbEdit']"));
+			act.moveToElement(element4).build().perform();
+			wait.until(ExpectedConditions.elementToBeClickable(element4));
+			act.moveToElement(element4).click().perform();
+			wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("content1")));
+		}
 
 		wait.until(ExpectedConditions.elementToBeClickable(By.id("txtToStopSeq")));
 		driver.findElement(By.id("txtToStopSeq")).clear();
 		driver.findElement(By.id("txtToStopSeq")).sendKeys("5");
 
-		wait.until(ExpectedConditions.elementToBeClickable(By.id("btnaddshipment")));
-		driver.findElement(By.id("btnaddshipment")).click();
+		WebElement AddShipment = driver.findElement(By.id("btnaddshipment"));
+		act.moveToElement(AddShipment).build().perform();
+		wait.until(ExpectedConditions.elementToBeClickable(AddShipment));
+		js.executeScript("arguments[0].click();", AddShipment);
+
+		EditShip = driver.findElement(By.id("btnDownEditStops"));
+		js.executeScript("arguments[0].scrollIntoView();", EditShip);
+		Thread.sleep(2000);
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("gvShipmentDetails")));
+
+		ShipmentDetails = driver.findElement(By.id("module.shipment._header"));
+		js.executeScript("arguments[0].scrollIntoView();", ShipmentDetails);
+		Thread.sleep(5000);
 
 		// Shipment Details - 5
 		// From
@@ -684,6 +758,8 @@ public class ServiceRW {
 		driver.findElement(By.id("txtToAddr1")).sendKeys("2850 OCEAN PARK BLVD");
 		driver.findElement(By.id("txtToAddr2")).sendKeys("#300");
 		driver.findElement(By.id("txtToZip")).sendKeys("90405");
+		driver.findElement(By.id("txtToZip")).sendKeys(Keys.TAB);
+		Thread.sleep(2000);
 		driver.findElement(By.id("txtToPhone")).sendKeys("(424) 288-2125");
 		driver.findElement(By.id("txtDelInst")).sendKeys("Art Work");
 		driver.findElement(By.id("txtRecipientEmail")).sendKeys("pdoshi@samyak.com");
@@ -729,7 +805,14 @@ public class ServiceRW {
 		driver.findElement(By.id("txtRouteWorkRef3")).sendKeys("Ref3 Ship5");
 
 		driver.findElement(By.id("btnaddshipment")).click();
+		EditShip = driver.findElement(By.id("btnDownEditStops"));
+		js.executeScript("arguments[0].scrollIntoView();", EditShip);
+		Thread.sleep(2000);
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("gvShipmentDetails")));
+
+		ShipmentDetails = driver.findElement(By.id("module.shipment._header"));
+		js.executeScript("arguments[0].scrollIntoView();", ShipmentDetails);
+		Thread.sleep(5000);
 
 		BtnDone = driver.findElement(By.id("btndone"));
 		js.executeScript("arguments[0].scrollIntoView(true);", BtnDone);
@@ -760,10 +843,13 @@ public class ServiceRW {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("ddlStatus")));
 		driver.findElement(By.id("ddlStatus")).sendKeys("All");
 		driver.findElement(By.id("txtRouteWorkId")).sendKeys(RWid1);
-		driver.findElement(By.id("btnSearch")).click();
+		Search = driver.findElement(By.id("btnSearch"));
+		wait.until(ExpectedConditions.elementToBeClickable(Search));
+		Search.click();
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("load")));
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("currentForm")));
 		getScreenshot(driver, "CreatedRWSearch");
+		Thread.sleep(2000);
 
 		// Active RW
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(".//*[@id='dgRWList_lbActivate_0']/img")));
