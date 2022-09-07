@@ -1,5 +1,8 @@
 package RW;
 
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -215,9 +218,11 @@ public class ServiceRW {
 		}
 		Thread.sleep(2000);
 		WebElement RWRadio = driver.findElement(By.id("rbRouteWork"));
+		wait.until(ExpectedConditions.elementToBeClickable(By.id("rbRouteWork")));
 		js.executeScript("arguments[0].click();", RWRadio);
 
 		WebElement Login = driver.findElement(By.id("cmdLogin"));
+		wait.until(ExpectedConditions.elementToBeClickable(By.id("cmdLogin")));
 		js.executeScript("arguments[0].click();", Login);
 		Thread.sleep(2000);
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("content")));
@@ -237,10 +242,11 @@ public class ServiceRW {
 	}
 
 	@Test
-	public void serviceRW() throws InterruptedException, IOException {
+	public void serviceRW() throws InterruptedException, IOException, AWTException {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		Actions act = new Actions(driver);
-		// options.addArguments("--test-type");
+		Robot robot = new Robot();
+// options.addArguments("--test-type");
 		WebDriverWait wait = new WebDriverWait(driver, 50);
 		genData = new GenerateData();
 		String Env = storage.getProperty("Env");
@@ -250,6 +256,7 @@ public class ServiceRW {
 		// Open Menu > Submenu > Submenu -- "RW Form page"
 
 		try {
+			wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Admin")));
 			driver.findElement(By.linkText("Admin")).click();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Route Work")));
 
@@ -258,6 +265,7 @@ public class ServiceRW {
 			builder.moveToElement(menu).perform();
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Route Work Form")));
 
+			wait.until(ExpectedConditions.elementToBeClickable(By.linkText("Route Work Form")));
 			driver.findElement(By.linkText("Route Work Form")).click();
 			wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("content1")));
 
@@ -300,6 +308,7 @@ public class ServiceRW {
 			driver.findElement(By.id("txtRouteWorkRef4")).sendKeys("reference4");
 
 			// Executed By
+			wait.until(ExpectedConditions.elementToBeClickable(By.id("rdbNGL")));
 			driver.findElement(By.id("rdbNGL")).click();
 
 			// Generate Route(No. of hours)
@@ -365,6 +374,7 @@ public class ServiceRW {
 			// System.out.println(RdyTime);
 
 			// Recurrence
+			wait.until(ExpectedConditions.elementToBeClickable(By.id("rdbtrecurrence_0")));
 			driver.findElement(By.id("rdbtrecurrence_0")).click();
 			driver.findElement(By.id("txtDaysDaily")).sendKeys("2");
 			String RecType = driver.findElement(By.id("rdbtrecurrence_0")).getAttribute("value");
@@ -444,8 +454,11 @@ public class ServiceRW {
 			driver.findElement(By.id("txtFromPhone")).sendKeys("(424) 288-2125");
 			driver.findElement(By.id("txtPUInst")).sendKeys("Art Work");
 			driver.findElement(By.id("txtShipperEmail")).sendKeys("pdoshi1@samyak.com");
+			wait.until(ExpectedConditions.elementToBeClickable(By.id("chkShpOrderRcvd")));
 			driver.findElement(By.id("chkShpOrderRcvd")).click();
+			wait.until(ExpectedConditions.elementToBeClickable(By.id("chkShpPickup")));
 			driver.findElement(By.id("chkShpPickup")).click();
+			wait.until(ExpectedConditions.elementToBeClickable(By.id("chkShpDelivery")));
 			driver.findElement(By.id("chkShpDelivery")).click();
 
 			// TO
@@ -456,12 +469,17 @@ public class ServiceRW {
 			driver.findElement(By.id("txtToAddr2")).sendKeys("#1600");
 			driver.findElement(By.id("txtToZip")).sendKeys("90024");
 			driver.findElement(By.id("txtToZip")).sendKeys(Keys.TAB);
+			logs.info("Enter To Zip");
+			robot.keyPress(KeyEvent.VK_TAB);
 			Thread.sleep(2000);
 			driver.findElement(By.id("txtToPhone")).sendKeys("(424) 288-2125");
 			driver.findElement(By.id("txtDelInst")).sendKeys("Art Work");
 			driver.findElement(By.id("txtRecipientEmail")).sendKeys("pdoshi2@samyak.com");
+			wait.until(ExpectedConditions.elementToBeClickable(By.id("chkRecpOrderRcvd")));
 			driver.findElement(By.id("chkRecpOrderRcvd")).click();
+			wait.until(ExpectedConditions.elementToBeClickable(By.id("chkRecpQDTChange")));
 			driver.findElement(By.id("chkRecpQDTChange")).click();
+			wait.until(ExpectedConditions.elementToBeClickable(By.id("chkRecpException")));
 			driver.findElement(By.id("chkRecpException")).click();
 
 			// Package for Shipment-1
@@ -484,6 +502,7 @@ public class ServiceRW {
 			driver.findElement(By.id("txtRouteWorkRef1")).sendKeys("Ref1 Ship1");
 			driver.findElement(By.id("txtRouteWorkRef3")).sendKeys("Ref3 Ship1");
 
+			wait.until(ExpectedConditions.elementToBeClickable(By.id("btnaddshipment")));
 			driver.findElement(By.id("btnaddshipment")).click();
 			Thread.sleep(2000);
 			WebElement EditShip = driver.findElement(By.id("btnDownEditStops"));
@@ -510,9 +529,13 @@ public class ServiceRW {
 			driver.findElement(By.id("txtToZip")).sendKeys("91406");
 			driver.findElement(By.id("txtToZip")).sendKeys(Keys.TAB);
 			Thread.sleep(2000);
+			logs.info("Enter To Zip");
+			robot.keyPress(KeyEvent.VK_TAB);
+			Thread.sleep(2000);
 			driver.findElement(By.id("txtToPhone")).sendKeys("(424) 288-2125");
 			driver.findElement(By.id("txtDelInst")).sendKeys("Art Work");
 			driver.findElement(By.id("txtRecipientEmail")).sendKeys("pdoshi@samyak.com");
+			wait.until(ExpectedConditions.elementToBeClickable(By.id("chkRecpOrderRcvd")));
 			driver.findElement(By.id("chkRecpOrderRcvd")).click();
 			// Package for Shipment-2
 			driver.findElement(By.id("pieces")).clear();
@@ -558,11 +581,17 @@ public class ServiceRW {
 			driver.findElement(By.id("txtToZip")).sendKeys("91404");
 			driver.findElement(By.id("txtToZip")).sendKeys(Keys.TAB);
 			Thread.sleep(2000);
+			logs.info("Enter To Zip");
+			robot.keyPress(KeyEvent.VK_TAB);
+			Thread.sleep(2000);
 			driver.findElement(By.id("txtToPhone")).sendKeys("(424) 288-2125");
 			driver.findElement(By.id("txtDelInst")).sendKeys("Art Work");
 			driver.findElement(By.id("txtRecipientEmail")).sendKeys("pdoshi@samyak.com");
+			wait.until(ExpectedConditions.elementToBeClickable(By.id("chkRecpOrderRcvd")));
 			driver.findElement(By.id("chkRecpOrderRcvd")).click();
+			wait.until(ExpectedConditions.elementToBeClickable(By.id("chkRecpQDTChange")));
 			driver.findElement(By.id("chkRecpQDTChange")).click();
+			wait.until(ExpectedConditions.elementToBeClickable(By.id("chkRecpException")));
 			driver.findElement(By.id("chkRecpException")).click();
 			// Package for Shipment-3
 			driver.findElement(By.id("pieces")).clear();
@@ -583,6 +612,7 @@ public class ServiceRW {
 			driver.findElement(By.id("txtRouteWorkRef1")).sendKeys("Ref1 Ship3");
 			driver.findElement(By.id("txtRouteWorkRef3")).sendKeys("Ref3 Ship3");
 
+			wait.until(ExpectedConditions.elementToBeClickable(By.id("btnaddshipment")));
 			driver.findElement(By.id("btnaddshipment")).click();
 			EditShip = driver.findElement(By.id("btnDownEditStops"));
 			js.executeScript("arguments[0].scrollIntoView();", EditShip);
@@ -608,12 +638,15 @@ public class ServiceRW {
 			driver.findElement(By.id("txtToAddr2")).clear();
 			driver.findElement(By.id("txtToZip")).sendKeys("91404");
 			driver.findElement(By.id("txtToZip")).sendKeys(Keys.TAB);
-			driver.findElement(By.id("txtToZip")).sendKeys(Keys.TAB);
-
 			Thread.sleep(2000);
+			logs.info("Enter To Zip");
+			robot.keyPress(KeyEvent.VK_TAB);
+			Thread.sleep(2000);
+
 			driver.findElement(By.id("txtToPhone")).sendKeys("(424) 288-2125");
 			driver.findElement(By.id("txtDelInst")).sendKeys("Art Work");
 			driver.findElement(By.id("txtRecipientEmail")).sendKeys("pdoshi@samyak.com");
+			wait.until(ExpectedConditions.elementToBeClickable(By.id("chkRecpOrderRcvd")));
 			driver.findElement(By.id("chkRecpOrderRcvd")).click();
 			// Package for Shipment-4
 			driver.findElement(By.id("pieces")).clear();
@@ -621,6 +654,7 @@ public class ServiceRW {
 			WebElement webElement = driver.findElement(By.id("pieces"));
 			webElement.sendKeys(Keys.TAB);
 			Thread.sleep(500);
+			wait.until(ExpectedConditions.elementToBeClickable(By.xpath(".//*[@id='rdbyes']")));
 			driver.findElement(By.xpath(".//*[@id='rdbyes']")).click();
 
 			driver.findElement(By.id("txtContents")).clear();
@@ -639,6 +673,7 @@ public class ServiceRW {
 			driver.findElement(By.id("txtRouteWorkRef1")).sendKeys("Ref1 Ship4");
 			driver.findElement(By.id("txtRouteWorkRef3")).sendKeys("Ref3 Ship4");
 
+			wait.until(ExpectedConditions.elementToBeClickable(By.id("btnaddshipment")));
 			driver.findElement(By.id("btnaddshipment")).click();
 			EditShip = driver.findElement(By.id("btnDownEditStops"));
 			js.executeScript("arguments[0].scrollIntoView();", EditShip);
@@ -653,6 +688,7 @@ public class ServiceRW {
 			WebElement BtnDone = driver.findElement(By.id("btndone"));
 			js.executeScript("arguments[0].scrollIntoView(true);", BtnDone);
 			Thread.sleep(2000);
+			wait.until(ExpectedConditions.elementToBeClickable(By.id("btndone")));
 			act.moveToElement(BtnDone).click().perform();
 			System.out.println("Click on Done button");
 			// BtnDone.click();
@@ -670,7 +706,9 @@ public class ServiceRW {
 
 			// Click SaveforLater for Draft
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("btnsaveforlater")));
-			driver.findElement(By.id("btnsaveforlater")).click();
+			wait.until(ExpectedConditions.elementToBeClickable(By.id("btnsaveforlater")));
+			WebElement SaveForLater = driver.findElement(By.id("btnsaveforlater"));
+			act.moveToElement(SaveForLater).click().build().perform();
 			System.out.println("Click on Save For Later");
 			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("load")));
 			wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("currentForm")));
@@ -727,8 +765,11 @@ public class ServiceRW {
 				WebElement element4 = driver.findElement(By.xpath(".//*[@id='gvShipmentDetails_ctl06_lbEdit']"));
 				act.moveToElement(element4).build().perform();
 				wait.until(ExpectedConditions.elementToBeClickable(element4));
-				act.moveToElement(element4).click().perform();
+				act.moveToElement(element4).click().build().perform();
 				System.out.println("Click on Edit button of Shipment 4");
+				Thread.sleep(2000);
+				wait.until(ExpectedConditions
+						.invisibilityOfElementLocated(By.xpath("//*[@src=\"images/ajax-loader.gif\"]")));
 				wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("content1")));
 			} catch (Exception ctl006) {
 				wait.until(ExpectedConditions
@@ -789,11 +830,17 @@ public class ServiceRW {
 			driver.findElement(By.id("txtToZip")).sendKeys("90405");
 			driver.findElement(By.id("txtToZip")).sendKeys(Keys.TAB);
 			Thread.sleep(2000);
+			logs.info("Enter To Zip");
+			robot.keyPress(KeyEvent.VK_TAB);
+			Thread.sleep(2000);
 			driver.findElement(By.id("txtToPhone")).sendKeys("(424) 288-2125");
 			driver.findElement(By.id("txtDelInst")).sendKeys("Art Work");
 			driver.findElement(By.id("txtRecipientEmail")).sendKeys("pdoshi@samyak.com");
+			wait.until(ExpectedConditions.elementToBeClickable(By.id("chkRecpOrderRcvd")));
 			driver.findElement(By.id("chkRecpOrderRcvd")).click();
+			wait.until(ExpectedConditions.elementToBeClickable(By.id("chkRecpPickup")));
 			driver.findElement(By.id("chkRecpPickup")).click();
+			wait.until(ExpectedConditions.elementToBeClickable(By.id("chkRecpDelivery")));
 			driver.findElement(By.id("chkRecpDelivery")).click();
 			// Package for Shipment-5
 			// driver.findElement(By.id("pieces")).clear();
@@ -802,6 +849,7 @@ public class ServiceRW {
 			driver.findElement(By.id("pieces")).sendKeys("2");
 			driver.findElement(By.id("pieces")).sendKeys(Keys.TAB);
 			Thread.sleep(1000);
+			wait.until(ExpectedConditions.elementToBeClickable(By.xpath(".//*[@id='rdbNo']")));
 			driver.findElement(By.xpath(".//*[@id='rdbNo']")).click();
 			driver.findElement(By.id("txtContents")).clear();
 			driver.findElement(By.id("txtContents")).sendKeys("FLOWERS with Chocolate");
@@ -833,6 +881,7 @@ public class ServiceRW {
 			driver.findElement(By.id("txtRouteWorkRef1")).sendKeys("Ref1 Ship5");
 			driver.findElement(By.id("txtRouteWorkRef3")).sendKeys("Ref3 Ship5");
 
+			wait.until(ExpectedConditions.elementToBeClickable(By.id("btnaddshipment")));
 			driver.findElement(By.id("btnaddshipment")).click();
 			System.out.println("Click on Add Shipment button");
 
@@ -848,6 +897,7 @@ public class ServiceRW {
 			BtnDone = driver.findElement(By.id("btndone"));
 			js.executeScript("arguments[0].scrollIntoView(true);", BtnDone);
 			Thread.sleep(2000);
+			wait.until(ExpectedConditions.elementToBeClickable(By.id("btndone")));
 			act.moveToElement(BtnDone).click().perform();
 			System.out.println("Click on Done button");
 			Thread.sleep(2000);
@@ -866,6 +916,7 @@ public class ServiceRW {
 
 				// Click SaveforLater for Draft
 				wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("btnsaveforlater")));
+				wait.until(ExpectedConditions.elementToBeClickable(By.id("btnsaveforlater")));
 				driver.findElement(By.id("btnsaveforlater")).click();
 				System.out.println("Click on Save For Later button");
 				wait.until(ExpectedConditions.invisibilityOfElementLocated(By.id("load")));
@@ -902,6 +953,7 @@ public class ServiceRW {
 			System.out.println(NextGen);
 
 			// Reset RW list
+			wait.until(ExpectedConditions.elementToBeClickable(By.id("btnSearch")));
 			driver.findElement(By.id("btnSearch")).click();
 			System.out.println("Click on Search button");
 			Thread.sleep(2000);
@@ -918,6 +970,7 @@ public class ServiceRW {
 			// Store the current window handle
 			String winHandleBefore = driver.getWindowHandle();
 			// Perform the click operation that opens new window
+			wait.until(ExpectedConditions.elementToBeClickable(By.xpath(".//*[@id='dgRWList_lbRWOccurance_0']/img")));
 			driver.findElement(By.xpath(".//*[@id='dgRWList_lbRWOccurance_0']/img")).click();
 			// Switch to new window opened
 			for (String winHandle : driver.getWindowHandles()) {
@@ -1026,11 +1079,13 @@ public class ServiceRW {
 
 			// --scroll up
 			js.executeScript("window.scrollBy(0,-250)", "");
+			js.executeScript("scroll(0, -250);");
 			Thread.sleep(2000);
 			getScreenshot(driver, "RWissue1");
 
 			// --scroll Down
 			js.executeScript("window.scrollBy(0,250)", "");
+			js.executeScript("scroll(0, 250);");
 			Thread.sleep(2000);
 			getScreenshot(driver, "RWissue2");
 
