@@ -59,8 +59,8 @@ public class ServiceRW {
 		DesiredCapabilities capabilities = new DesiredCapabilities();
 		WebDriverManager.chromedriver().setup();
 		ChromeOptions options = new ChromeOptions();
-		// options.addArguments("--headless", "--window-size=1382, 744");
-		options.addArguments("--headless", "--window-size=1920,1200");
+		//options.addArguments("--headless", "--window-size=1382, 744");
+		//options.addArguments("--headless", "--window-size=1920,1200");
 		options.addArguments("--incognito");
 		options.addArguments("--test-type");
 		options.addArguments("--no-proxy-server");
@@ -84,7 +84,7 @@ public class ServiceRW {
 
 		// Set new size
 
-		// driver.manage().window().maximize();
+		 driver.manage().window().maximize();
 		/*
 		 * Dimension newDimension = new Dimension(1366, 788);
 		 * driver.manage().window().setSize(newDimension);
