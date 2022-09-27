@@ -15,7 +15,6 @@ import java.util.Properties;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.OutputType;
@@ -59,8 +58,8 @@ public class ServiceRW {
 		DesiredCapabilities capabilities = new DesiredCapabilities();
 		WebDriverManager.chromedriver().setup();
 		ChromeOptions options = new ChromeOptions();
-		//options.addArguments("--headless", "--window-size=1382, 744");
-		//options.addArguments("--headless", "--window-size=1920,1200");
+		// options.addArguments("--headless", "--window-size=1382, 744");
+		options.addArguments("--headless", "--window-size=1920,1200");
 		options.addArguments("--incognito");
 		options.addArguments("--test-type");
 		options.addArguments("--no-proxy-server");
@@ -84,7 +83,7 @@ public class ServiceRW {
 
 		// Set new size
 
-		 driver.manage().window().maximize();
+		driver.manage().window().maximize();
 		/*
 		 * Dimension newDimension = new Dimension(1366, 788);
 		 * driver.manage().window().setSize(newDimension);
@@ -435,6 +434,8 @@ public class ServiceRW {
 			driver.findElement(By.id("txtUDAddr1")).sendKeys("9011 CAPITAL KING, 7TH STRT");
 			driver.findElement(By.id("txtUDAddr2")).sendKeys("No#771");
 			driver.findElement(By.id("txtUDzip")).sendKeys("90003");
+			logs.info("Enter UD Zip");
+			robot.keyPress(KeyEvent.VK_TAB);
 			driver.findElement(By.id("txtUDzip")).sendKeys(Keys.TAB);
 			Thread.sleep(2000);
 			driver.findElement(By.id("txtUDPhone")).sendKeys("4115116110");
@@ -448,7 +449,10 @@ public class ServiceRW {
 			driver.findElement(By.id("txtFromContact")).sendKeys("Client Trust");
 			driver.findElement(By.id("txtFromAddr1")).sendKeys("2000 AVENUE OF THE STARS");
 			driver.findElement(By.id("txtFromAddr2")).sendKeys("");
+			driver.findElement(By.id("txtFromZip")).clear();
 			driver.findElement(By.id("txtFromZip")).sendKeys("90067");
+			logs.info("Enter From Zip");
+			robot.keyPress(KeyEvent.VK_TAB);
 			driver.findElement(By.id("txtFromZip")).sendKeys(Keys.TAB);
 			Thread.sleep(2000);
 			driver.findElement(By.id("txtFromPhone")).sendKeys("(424) 288-2125");
@@ -467,10 +471,11 @@ public class ServiceRW {
 			driver.findElement(By.id("txtToContact")).sendKeys("GARY LEVINE");
 			driver.findElement(By.id("txtToAddr1")).sendKeys("10880 WHILSHIRE BLVD");
 			driver.findElement(By.id("txtToAddr2")).sendKeys("#1600");
+			driver.findElement(By.id("txtToZip")).clear();
 			driver.findElement(By.id("txtToZip")).sendKeys("90024");
-			driver.findElement(By.id("txtToZip")).sendKeys(Keys.TAB);
 			logs.info("Enter To Zip");
 			robot.keyPress(KeyEvent.VK_TAB);
+			driver.findElement(By.id("txtToZip")).sendKeys(Keys.TAB);
 			Thread.sleep(2000);
 			driver.findElement(By.id("txtToPhone")).sendKeys("(424) 288-2125");
 			driver.findElement(By.id("txtDelInst")).sendKeys("Art Work");
@@ -526,11 +531,11 @@ public class ServiceRW {
 			driver.findElement(By.id("txtToContact")).sendKeys("JARRY CROSS");
 			driver.findElement(By.id("txtToAddr1")).sendKeys("16128 SHERMAN WAY");
 			driver.findElement(By.id("txtToAddr2")).clear();
+			driver.findElement(By.id("txtToZip")).clear();
 			driver.findElement(By.id("txtToZip")).sendKeys("91406");
-			driver.findElement(By.id("txtToZip")).sendKeys(Keys.TAB);
-			Thread.sleep(2000);
 			logs.info("Enter To Zip");
 			robot.keyPress(KeyEvent.VK_TAB);
+			driver.findElement(By.id("txtToZip")).sendKeys(Keys.TAB);
 			Thread.sleep(2000);
 			driver.findElement(By.id("txtToPhone")).sendKeys("(424) 288-2125");
 			driver.findElement(By.id("txtDelInst")).sendKeys("Art Work");
@@ -578,11 +583,11 @@ public class ServiceRW {
 			driver.findElement(By.id("txtToContact")).sendKeys("MR. MICHAEL LOMBARDO");
 			driver.findElement(By.id("txtToAddr1")).sendKeys("2500 BROADWAY");
 			driver.findElement(By.id("txtToAddr2")).sendKeys("#400");
+			driver.findElement(By.id("txtToZip")).clear();
 			driver.findElement(By.id("txtToZip")).sendKeys("91404");
-			driver.findElement(By.id("txtToZip")).sendKeys(Keys.TAB);
-			Thread.sleep(2000);
 			logs.info("Enter To Zip");
 			robot.keyPress(KeyEvent.VK_TAB);
+			driver.findElement(By.id("txtToZip")).sendKeys(Keys.TAB);
 			Thread.sleep(2000);
 			driver.findElement(By.id("txtToPhone")).sendKeys("(424) 288-2125");
 			driver.findElement(By.id("txtDelInst")).sendKeys("Art Work");
@@ -636,11 +641,11 @@ public class ServiceRW {
 			driver.findElement(By.id("txtToContact")).sendKeys("SQUINTAR FILMS INC");
 			driver.findElement(By.id("txtToAddr1")).sendKeys("2900 OLYMPIC BLVD");
 			driver.findElement(By.id("txtToAddr2")).clear();
+			driver.findElement(By.id("txtToZip")).clear();
 			driver.findElement(By.id("txtToZip")).sendKeys("91404");
-			driver.findElement(By.id("txtToZip")).sendKeys(Keys.TAB);
-			Thread.sleep(2000);
 			logs.info("Enter To Zip");
 			robot.keyPress(KeyEvent.VK_TAB);
+			driver.findElement(By.id("txtToZip")).sendKeys(Keys.TAB);
 			Thread.sleep(2000);
 
 			driver.findElement(By.id("txtToPhone")).sendKeys("(424) 288-2125");
@@ -827,11 +832,11 @@ public class ServiceRW {
 			driver.findElement(By.id("txtToContact")).sendKeys("BARRY SIEGAL");
 			driver.findElement(By.id("txtToAddr1")).sendKeys("2850 OCEAN PARK BLVD");
 			driver.findElement(By.id("txtToAddr2")).sendKeys("#300");
-			driver.findElement(By.id("txtToZip")).sendKeys("90405");
-			driver.findElement(By.id("txtToZip")).sendKeys(Keys.TAB);
-			Thread.sleep(2000);
+			driver.findElement(By.id("txtToZip")).clear();
+			driver.findElement(By.id("txtToZip")).sendKeys("91405");
 			logs.info("Enter To Zip");
 			robot.keyPress(KeyEvent.VK_TAB);
+			driver.findElement(By.id("txtToZip")).sendKeys(Keys.TAB);
 			Thread.sleep(2000);
 			driver.findElement(By.id("txtToPhone")).sendKeys("(424) 288-2125");
 			driver.findElement(By.id("txtDelInst")).sendKeys("Art Work");
