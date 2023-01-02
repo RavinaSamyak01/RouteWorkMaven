@@ -1,13 +1,10 @@
-2022-09-23 10:31:57,401 - io.github.bonigarcia.wdm.WebDriverManager -INFO - Using chromedriver 105.0.5195.52 (since Google Chrome 105 is installed in your machine)
-2022-09-23 10:31:57,429 - io.github.bonigarcia.wdm.WebDriverManager -INFO - Exporting webdriver.chrome.driver as C:\Users\rprajapati\.m2\repository\webdriver\chromedriver\win32\105.0.5195.52\chromedriver.exe
-2022-09-23 10:32:37,821 - ServiceRW -INFO - Enter To Zip
-2022-09-23 10:32:44,378 - ServiceRW -ERROR - org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"css selector","selector":"#btnDownEditStops"}
-  (Session info: chrome=105.0.5195.127)
-For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
-Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
-System info: host: 'SIPL92', ip: '10.212.140.5', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '16.0.2'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 105.0.5195.127, chrome: {chromedriverVersion: 105.0.5195.52 (412c95e51883..., userDataDir: C:\Users\RPRAJA~1\AppData\L...}, goog:chromeOptions: {debuggerAddress: localhost:62175}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: dde9ef27f179f8a2ff7dcea071d25d2a
-*** Element info: {Using=id, value=btnDownEditStops}
-2022-09-23 10:32:44,379 - ServiceRW -INFO - RW is FAIL
+2023-01-02 11:11:41,398 - io.github.bonigarcia.wdm.WebDriverManager -INFO - Using chromedriver 108.0.5359.71 (since Google Chrome 108 is installed in your machine)
+2023-01-02 11:11:41,434 - io.github.bonigarcia.wdm.WebDriverManager -INFO - Exporting webdriver.chrome.driver as C:\Users\rprajapati\.m2\repository\webdriver\chromedriver\win32\108.0.5359.71\chromedriver.exe
+2023-01-02 11:12:19,238 - ServiceRW -INFO - Enter UD Zip
+2023-01-02 11:12:22,884 - ServiceRW -INFO - Enter From Zip
+2023-01-02 11:12:27,712 - ServiceRW -INFO - Enter To Zip
+2023-01-02 11:12:51,259 - ServiceRW -INFO - Enter To Zip
+2023-01-02 11:13:15,252 - ServiceRW -INFO - Enter To Zip
+2023-01-02 11:13:35,694 - ServiceRW -INFO - Enter To Zip
+2023-01-02 11:14:50,840 - ServiceRW -INFO - Enter To Zip
+2023-01-02 11:16:22,185 - ServiceRW -INFO - RW is PASS

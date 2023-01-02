@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Properties;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.log4j.Logger;
+import org.apache.log4j.Logger;		
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -1068,8 +1068,7 @@ public class ServiceRW {
 			String subject = "Selenium Automation Script: " + Env + " : Route Work Smoke";
 
 			try {
-				Email.sendMail(
-						"ravina.prajapati@samyak.com,asharma@samyak.com,parth.doshi@samyak.com, saurabh.jain@samyak.com, himanshu.dholakia@samyak.com",
+				Email.sendMail("ravina.prajapati@samyak.com,asharma@samyak.com,parth.doshi@samyak.com,saurabh.jain@samyak.com",
 						subject, msg.toString(), "");
 
 			} catch (Exception ex) {
