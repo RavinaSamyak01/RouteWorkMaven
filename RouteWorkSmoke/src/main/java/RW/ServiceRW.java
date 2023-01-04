@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Properties;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.log4j.Logger;		
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -46,9 +46,11 @@ public class ServiceRW {
 	// "https://Staging.fedexsameday.com/specialsupport.aspx";
 	public static Properties storage = new Properties();
 	public static Logger logs;
+	String EmailID = storage.getProperty("MainEmailAddress");
 
 	@BeforeSuite
 	public void startup() throws IOException {
+		System.out.println("MainEmailAddress " + EmailID);
 		String logFilename = this.getClass().getSimpleName();
 		logs = Logger.getLogger(logFilename);
 		storage = new Properties();
@@ -120,9 +122,7 @@ public class ServiceRW {
 				String subject = "Selenium Automation Script: " + Env + " : Route Work Smoke";
 				String File = ".\\src\\main\\resources\\Screenshots\\LoginIssue.png";
 				try {
-					Email.sendMail(
-							"ravina.prajapati@samyak.com,asharma@samyak.com,parth.doshi@samyak.com, saurabh.jain@samyak.com, himanshu.dholakia@samyak.com",
-							subject, msg.toString(), File);
+					Email.sendMail(EmailID, subject, msg.toString(), File);
 
 				} catch (Exception ex) {
 					logs.equals(ex);
@@ -149,9 +149,7 @@ public class ServiceRW {
 				String subject = "Selenium Automation Script: " + Env + " : Route Work Smoke";
 				String File = ".\\src\\main\\resources\\Screenshots\\LoginIssue.png";
 				try {
-					Email.sendMail(
-							"ravina.prajapati@samyak.com,asharma@samyak.com,parth.doshi@samyak.com, saurabh.jain@samyak.com, himanshu.dholakia@samyak.com",
-							subject, msg.toString(), File);
+					Email.sendMail(EmailID, subject, msg.toString(), File);
 
 				} catch (Exception ex) {
 					logs.equals(ex);
@@ -176,9 +174,7 @@ public class ServiceRW {
 				String subject = "Selenium Automation Script: " + Env + " : Route Work Smoke";
 				String File = ".\\src\\main\\resources\\Screenshots\\LoginIssue.png";
 				try {
-					Email.sendMail(
-							"ravina.prajapati@samyak.com,asharma@samyak.com,parth.doshi@samyak.com, saurabh.jain@samyak.com, himanshu.dholakia@samyak.com",
-							subject, msg.toString(), File);
+					Email.sendMail(EmailID, subject, msg.toString(), File);
 
 				} catch (Exception ex) {
 					logs.equals(ex);
@@ -205,9 +201,7 @@ public class ServiceRW {
 				String subject = "Selenium Automation Script: " + Env + " : Route Work Smoke";
 				String File = ".\\src\\main\\resources\\Screenshots\\LoginIssue.png";
 				try {
-					Email.sendMail(
-							"ravina.prajapati@samyak.com,asharma@samyak.com,parth.doshi@samyak.com, saurabh.jain@samyak.com, himanshu.dholakia@samyak.com",
-							subject, msg.toString(), File);
+					Email.sendMail(EmailID, subject, msg.toString(), File);
 
 				} catch (Exception ex) {
 					logs.equals(ex);
@@ -1068,8 +1062,7 @@ public class ServiceRW {
 			String subject = "Selenium Automation Script: " + Env + " : Route Work Smoke";
 
 			try {
-				Email.sendMail("ravina.prajapati@samyak.com,asharma@samyak.com,parth.doshi@samyak.com,saurabh.jain@samyak.com",
-						subject, msg.toString(), "");
+				Email.sendMail(EmailID, subject, msg.toString(), "");
 
 			} catch (Exception ex) {
 				logs.equals(ex);
